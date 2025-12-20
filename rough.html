@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* General Styles */
         * {
@@ -18,401 +18,858 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://www.hdwallpapers.in/download/road_path_grass_field_clouds_sky_forest_nature_landscape_wallpaper_background_4k_hd_nature-HD.jpg');
+            font-family: sans-serif;
+            background-image: url('https://www.hdwallpapers.in/download/road_path_grass_field_clouds_sky_forest_nature_landscape_wallpaper_background_4k_hd_nature-HD.jpg');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             background-attachment: fixed;
             background-color: #f0f7f4;
             color: #333;
             line-height: 1.6;
-            padding-top: 100px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            padding-top: 120px; /* Adjusted padding-top for the expanded header */
+        }
+        
+        html, body {
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         main {
-            width: 95%;
+            width: 100%;
             max-width: 1200px;
-            margin: 0 auto;
-            min-height: 80vh;
+            padding: 20px;
+            flex-grow: 1;
         }
 
-        h1, h2 {
+        
+
+        h1,h2 {
             text-align: center;
             color: white;
             margin-bottom: 20px;
-            font-size: clamp(1.8rem, 5vw, 2.8rem);
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            font-size: 2.8em;
         }
 
         h3 {
             text-align: center;
             color: #3b7c62;
             margin-bottom: 20px;
-            font-size: 1.8rem;
+            font-size: 2em;
         }
 
         h4 {
             color: #3b7c62;
-            margin-bottom: 5px;
-            font-size: 1.2rem;
+            margin-top: 20px;
+            margin-bottom: 0;
+            font-size: 1.4em;
+            text-align: left;
         }
 
-        /* Header Styling */
+        p {
+            text-align: left;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        li {
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            /* font-weight: bold; */
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Header and Navigation Styles */
         .header {
             width: 100%;
             background-color: #c3e9c2;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1000;
-            height: 80px;
-            padding: 0 5%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+            height: 90px;
+            padding: 0 10px;
         }
-
+        
         .header_logo img {
-            height: 60px;
+            height: 90px;
             width: auto;
+            object-fit: contain;
         }
 
-        .header_navLinks {
-            display: flex;
-            gap: 15px;
+        .header_navLinks a, .Cart_Login a {
+            font-size: 17px;
+            color: black;
+            padding: 10px 8px;
+            font-family: sans-serif;
         }
-
+        
         .header_navLinks a {
-            font-size: 16px;
-            color: #242020;
-            font-weight: bold;
-            padding: 8px 12px;
-            transition: 0.3s;
+            margin: 12px;
         }
 
         .header_navLinks a:hover {
             background-color: #5C4033;
             color: white;
-            border-radius: 8px;
+            border-radius: 10px;
+            text-decoration: none;
         }
 
-        .header_right_side {
+        .Cart_Login {
+            position: relative;
+            margin-right: 0.5%;
+        }
+
+        .Login_option {
+            position: relative;
+            display: inline-block;
+        }
+
+        .Login_SignUp {
+            display: none;
+            position: absolute;
+            top: 75%;
+            left: 40%;
+            transform: translateX(-50%);
+            background-color: #CDEAC0;
+            border-radius: 5px;
+            padding: 5px 10px;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        .Login_option:hover .Login_SignUp {
+            display: block;
+        }
+
+        .header_side_bars {
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 20px;
-        }
-
-        .header_bars {
-            display: none; 
-            font-size: 26px;
+            position: relative;
             cursor: pointer;
-            color: #141010;
+        }
+        
+        .header_bars {
+            padding: 10px;
+            cursor: pointer;
         }
 
-        /* Sidebar Menu (Icons & Text Left Aligned) */
         .header_menu {
             position: fixed;
-            top: 0;
-            right: -320px;
-            width: 300px;
+            width: 250px;
             height: 100vh;
+            top: 0;
+            right: -250px;
+            transition: right 1s ease;
             background-color: #CDEAC0;
-            z-index: 2000;
-            transition: right 0.4s ease;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
             display: flex;
             flex-direction: column;
-        }
-
-        .cross {
-            text-align: right;
-            padding: 15px 20px;
-            font-size: 30px;
-            cursor: pointer;
-        }
-
-        .submenu_container {
-            display: flex;
-            flex-direction: column;
+            align-items: flex-end;
+            padding-top: 15px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
         }
 
         .submenu {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            width: 100%;
+            padding: 10px 0;
+            border-bottom: 1px solid #5C4033;
+            cursor: pointer;
+            text-align: right;
         }
 
         .submenu a {
-            display: flex;
-            align-items: center;
-            padding: 15px 25px;
-            color: #242020;
-            font-size: 1.1rem;
-            transition: 0.3s;
+            padding-right: 15px;
+            color: black;
+            display: block;
+            text-align: right;
+            font-size: 1.1em;
         }
-
+        
         .submenu a i {
-            width: 35px; /* Ensures icons are vertically aligned */
-            font-size: 1.2rem;
-            text-align: center;
-            margin-right: 15px;
+            margin-right: 10px;
         }
 
         .submenu:hover {
-            background-color: rgba(92, 64, 51, 0.1);
+            background-color: #5C4033;
+            color: white;
         }
 
-        /* Selection Grid */
+        .submenu:hover a {
+            color: white;
+            text-shadow: 1px 2px 4px grey;
+        }
+
+        .cross {
+            font-size: 35px;
+            color: black;
+            width: fit-content;
+            font-style: normal;
+            font-weight: bold;
+            padding: 4px 10px;
+            cursor: pointer;
+            margin-top: 12px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        
+        .cross:hover {
+            background-color: red;
+            color: white;
+        }
+        
+        /* Footer Styles */
+        .footer {
+            width: 100%;
+            background-color: #8C7153;
+            color: white;
+            padding-top: 2rem;
+        }
+        
+        .footer_top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            color: white;
+            padding: 0.5rem 0;
+            text-align: left;
+        }
+        
+        .footer h2, .footer h3 {
+            padding-bottom: 0.2rem;
+            color: #FFF4B0;
+        }
+        
+        .footer_contact, .footer_about, .follow_us {
+            line-height: 24px;
+        }
+        
+        .social_media {
+            padding: 5px;
+        }
+        
+        .social_media i {
+            padding-right: 8px;
+        }
+        
+        .social_media i:hover {
+            color: #FFF4B0;
+        }
+        
+        .footer_bottom {
+            padding: 20px;
+            color: white;
+            background-color: #8C7153;
+        }
+        
+        .footer_bottom hr {
+            border: none;
+            height: 2px;
+            background-color: #ffffff;
+            margin: 10px 0;
+            width: 100%;
+        }
+        
+        .copy_right {
+            display: flex;
+            justify-self: center;
+            text-align: center;
+        }
+
+        /* Main Content Sections */
         .button-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+            margin-bottom: 200px;
         }
 
         .plant-option {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 20px;
             text-align: center;
             cursor: pointer;
-            transition: transform 0.3s;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #f0f7f4;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
         }
 
-        .plant-option:hover { transform: translateY(-10px); }
+        .plant-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
 
         .plant-option img {
             width: 100%;
-            height: 250px;
+            height: 300px;
+            border-radius: 10px;
             object-fit: cover;
-            border-radius: 15px;
+            margin-bottom: 15px;
         }
 
         .plant-option span {
             display: block;
-            margin-top: 15px;
+            margin-top: 10px;
             font-weight: bold;
             color: #285943;
-            font-size: 1.5rem;
+            font-size: 1.5em;
         }
 
-        /* Content Sections */
         .content-section {
             display: none;
-            padding-bottom: 50px;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-top: 40px;
         }
 
         .section-pair {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .plant-type {
+            display: flex;
+            justify-content: center;
+            flex: 1 1 45%;
+            min-width: 350px;
+            max-width: 50%;
         }
 
         .box {
-            background: white;
+            width: 100%;
             border-radius: 15px;
             padding: 25px;
-            height: 100%;
+            background: white;
+            box-sizing: border-box;
+            opacity: 5;
+        }
+
+        .plant-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            justify-items: center;
+        }
+
+        .plant-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            position: relative;
+            top: -20px;
+        }
+
+        .plant-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
 
         .plant-card img {
             width: 100%;
-            height: auto;
-            max-height: 300px;
+            height: 280px;
             object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
         }
 
         .plant-box {
+            background-color: white;
             border-left: 5px solid #3b7c62;
-            background: #f9f9f9;
-            padding: 15px;
+            border-radius: 8px;
+            padding: 15px 20px;
             margin-bottom: 15px;
-            border-radius: 0 10px 10px 0;
+            display: block;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .back-button-container {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
         }
 
         .back-button {
             background-color: #2f5d62;
             color: white;
-            padding: 12px 30px;
+            padding: 12px 25px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 1.1rem;
-            margin: 40px auto;
-            display: block;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        /* Footer */
-        .footer {
-            background-color: #8C7153;
-            color: white;
-            padding: 40px 5% 20px;
-            margin-top: 60px;
+        .back-button:hover {
+            background-color: #3b7c62;
+            transform: translateY(-2px);
+        }
+        
+        /* Media Queries for Responsiveness */
+        @media (min-width: 1010px) {
+            .header_side_bars {
+                display: none;
+            }
         }
 
-        .footer_top {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+        @media (max-width: 1010px) {
+            .header_navLinks, .Cart_Login {
+                display: none;
+            }
+            .header_side_bars {
+                display: flex;
+            }
+            .header_menu {
+                top: 0px;
+                right: -250px;
+            }
         }
 
-        .footer h3 { color: #FFF4B0; text-align: left; }
+        @media screen and (max-width: 1024px) {
+            h1 { font-size: 2.4em; }
+            h2 { font-size: 1.8em; }
+            h4 { font-size: 1.2em; }
+            .button-container, .section-pair { gap: 20px; }
+            .plant-option { min-width: 280px; }
+            .plant-option img { height: 250px; }
+            .plant-type { flex: 1 1 48%; min-width: 300px; max-width: unset; }
+            .plant-card img { height: 220px; }
+        }
 
-        /* Media Queries */
-        @media (max-width: 1024px) {
+        @media screen and (max-width: 768px) {
+            body { padding: 10px; }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.6em; }
+            h4 { font-size: 1.1em; margin-top: 15px; }
+            p, ul, li { font-size: 0.95em; }
             .header_navLinks, .Cart_Login { display: none; }
-            .header_bars { display: block; }
+            .header_side_bars { display: flex; }
+            .header { padding: 0 20px; }
+            .button-container, .section-pair { flex-direction: column; gap: 25px; margin-top: 30px; }
+            .plant-option, .plant-type, .box, .plant-card { width: 100%; min-width: unset; }
+            .plant-option img { height: 200px; }
+            .box { padding: 20px; }
+            .plant-card { padding: 20px; }
+            .plant-card img { height: 180px; }
+            .footer_top { flex-direction: column; align-items: center; text-align: center; }
+            .social_media { justify-content: center; }
         }
 
-        @media (max-width: 600px) {
-            .header_menu { width: 280px; }
-            .plant-option img { height: 200px; }
+        @media screen and (max-width: 480px) {
+            h1 { font-size: 1.8em; margin-bottom: 25px; }
+            h2 { font-size: 1.4em; }
+            h4 { font-size: 1.1em; }
+            p, ul, li { font-size: 0.9em; }
+            .plant-option img { height: 180px; }
+            .plant-card img { height: 150px; }
+            .plant-box { padding: 12px 15px; }
+            .back-button { padding: 10px 20px; font-size: 1em; }
+            .header_logo img { height: 50px; }
         }
+
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header_logo"><img src="./logo.jpg" alt="logo"></div>
-        <nav class="header_navLinks">
-            <a href="./homepage.html">Home</a>
-            <a href="./PlantsModified.html">Plants</a>
-            <a href="./rough.html">PlantCare</a>
-            <a href="./essentials.html">Essentials</a>
-            <a href="./demo.html">AI Chat</a>
-        </nav>
-        <div class="header_right_side">
-            <div class="header_bars" onclick="Open()"><i class="fa-solid fa-bars"></i></div>
+    <div class="header">
+            <div class="header_logo">
+                <img src="./logo.jpg" alt="logo">
+            </div>
+            <div class="header_navLinks">
+                <a href="./homepage.html">Home</a>
+                <a href="./PlantsModified.html">Plants</a>
+                <a href="./rough.html">PlantCare</a>
+                <a href="./essentials.html">Essentials</a>
+                <a href="./FinalNewNersery.html">Nearby Nurseries</a>
+                <a href="./demo.html">AI chatbot</a>
+            </div>
+            <div class="Cart_Login">
+                <a href="./cart.html"><i class="fa-solid fa-cart-shopping" style="color: #242020; font-size: 20px;"></i></a>
+                <a href="./mainlogin.html" class="Login_option"><i class="fa-solid fa-circle-user" style="color: #252628; font-size: 20px;"></i>
+                    <div class="Login_SignUp">Logout</div>
+                </a>
+            </div>
+            <div class="header_side_bars">
+                <div class="header_bars" onclick="Open()">
+                    <i class="fa-solid fa-bars" style="color: #141010;"></i>
+                </div>
+                <div class="header_menu">
+                    <div class="cross" onclick="Close()">&times;</div>
+                    <div class="submenu"><a href="./homepage.html"><i class="fa-solid fa-house" style="color: #242629;"></i>&nbsp;Home</a></div>
+                    <div class="submenu"><a href="./PlantsModified.html"><i class="fa-solid fa-leaf" style="color: #272a2f;"></i>&nbsp;Plants</a></div>
+                    <div class="submenu"><a href="./rough.html"><i class="fa-solid fa-seedling" style="color: #2f343d;"></i>&nbsp;PlantCare</a></div>
+                    <div class="submenu"><a href="./essentials.html"><i class="fa-solid fa-mitten" style="color: #343941;"></i>&nbsp;Essentials</a></div>
+                    <div class="submenu"><a href="./FinalNewNersery.html"><i class="fa-solid fa-location-dot" style="color: #303640;"></i>&nbsp;Nearby Nurseries</a></div>
+                    <div class="submenu"><a href="./demo.html"><i class="fa-solid fa-robot" style="color: #2e3238;"></i>&nbsp;AI chatbot</a></div>
+                    <div class="submenu"><a href="./cart.html"><i class="fa-solid fa-cart-shopping" style="color: #2a2d32;"></i>&nbsp;Cart</a></div>
+                    <div class="submenu"><a href="./mainlogin.html"><i class="fa-solid fa-circle-user" style="color: #343941;"></i>&nbsp;Logout</a></div>
+                </div>
+            </div>
         </div>
-    </header>
-
-    <div class="header_menu" id="sideMenu">
-        <div class="cross" onclick="Close()">&times;</div>
-        <div class="submenu_container">
-            <div class="submenu"><a href="./homepage.html"><i class="fa-solid fa-house"></i>Home</a></div>
-            <div class="submenu"><a href="./PlantsModified.html"><i class="fa-solid fa-leaf"></i>Plants</a></div>
-            <div class="submenu"><a href="./rough.html"><i class="fa-solid fa-seedling"></i>PlantCare</a></div>
-            <div class="submenu"><a href="./essentials.html"><i class="fa-solid fa-mitten"></i>Essentials</a></div>
-            <div class="submenu"><a href="./demo.html"><i class="fa-solid fa-robot"></i>AI chatbot</a></div>
-            <div class="submenu"><a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i>Cart</a></div>
-            <div class="submenu"><a href="./mainlogin.html"><i class="fa-solid fa-circle-user"></i>Logout</a></div>
-        </div>
-    </div>
-
     <main>
         <h1 id="main-title">Select a Plant Type</h1>
-        
         <div id="start-box" class="button-container">
-            <div class="plant-option" onclick="showSection('soil-section')">
-                <img src="https://media.istockphoto.com/id/1181366400/photo/in-the-hands-of-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-on.jpg?s=612x612&w=0&k=20&c=jWUMrHgjMY9zQXsAwZFb1jfM6KxZE16-IXI1bvehjQM=" alt="Soil">
+            <div class="plant-option" role="button" tabindex="0" onclick="showSection('soil-section')" onkeypress="if(event.key === 'Enter') showSection('soil-section')">
+                <img src="https://media.istockphoto.com/id/1181366400/photo/in-the-hands-of-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-on.jpg?s=612x612&w=0&k=20&c=jWUMrHgjMY9zQXsAwZFb1jfM6KxZE16-IXI1bvehjQM=" alt="Soil Plant">
                 <span>Soil Plants</span>
             </div>
-            <div class="plant-option" onclick="showSection('water-section')">
-                <img src="https://justhouseplants.com/wp-content/uploads/2022/04/indoor-plants-that-grow-in-water.jpg" alt="Water">
+            <div class="plant-option" role="button" tabindex="0" onclick="showSection('water-section')" onkeypress="if(event.key === 'Enter') showSection('water-section')">
+                <img src="https://justhouseplants.com/wp-content/uploads/2022/04/indoor-plants-that-grow-in-water.jpg" alt="Water Plant">
                 <span>Water Plants</span>
             </div>
         </div>
 
         <div id="soil-section" class="content-section">
-            <h2>Soil Plants Guide</h2>
+            <h2 style="position: relative; top: -50px;">Soil Plants</h2>
             <div class="section-pair">
-                <div class="box">
-                    <h3>Organic Methods</h3>
-                    <div class="plant-card">
-                        <img src="https://www.lemon8-app.com/seo/image?item_id=7498683495515046442&index=0&sign=79dd5a0135e886e5653235b9fa853ba8" alt="Organic">
-                        <div class="plant-box">
-                            <h4>• Healthy Soil</h4>
-                            <p>Mix in organic amendments like compost or vermicompost for naturally rich nutrients.</p>
-                            <a href="#" target="_blank"><i class="fa-solid fa-hand-point-right"></i> Tutorial</a>
-                        </div>
-                        <div class="plant-box">
-                            <h4>• Biodiversity</h4>
-                            <p>Use companion planting to manage pests naturally and balance the ecosystem.</p>
+                <div class="plant-type">
+                    <div class="box">
+                        <h3>Organic</h3>
+                        <div class="plant-grid">
+                            <div class="plant-card">
+                                <img src="https://www.lemon8-app.com/seo/image?item_id=7498683495515046442&index=0&sign=79dd5a0135e886e5653235b9fa853ba8" alt="organic soil plant"/>
+                                <div class="plant-box">
+                                    <h4>•Start with Healthy Soil</h4>
+                                    <p>Use naturally rich soil or greatly improve it by generously mixing in organic amendments like compost, vermicompost, or well-rotted cow dung manure. This avoids synthetic fertilizers, as organic matter releases nutrients.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Start+with+Healthy+Soil" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Use Natural Compost</h4>
+                                    <p>Transform kitchen scraps, dry leaves, and garden waste into nutrient-rich compost. Not only does it enrich the soil and improve its texture, but it also helps retain moisture and significantly reduces household waste. This is especially useful in Rajamahendravaram for reusing local organic materials.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Use+Natural+Compost" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Avoid Chemical Inputs</h4>
+                                    <p>Completely say no to synthetic fertilizers and chemical pesticides. Instead, nourish your plants with bio-fertilizers like Panchagavya, Jeevamrutham (especially relevant in Andhra Pradesh), or compost tea. For pest control, opt for natural solutions like neem oil or garlic spray.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Avoid+Chemical+Inputs" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Encourage Biodiversity</h4>
+                                    <p>Plant a diverse variety of species together. This practice, known as companion planting, helps manage pests naturally by confusing them or attracting beneficial insects. It also keeps your soil ecosystem balanced and healthy, leading to more resilient plants.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Encourage+Biodiversity" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Mulch Regularly</h4>
+                                    <p>Cover the soil with a thick layer of organic mulch such as dry leaves, straw, or grass clippings. This vital practice retains soil moisture, significantly reduces weed growth, and helps regulate soil temperature naturally.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Mulch+Regularly" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Water Wisely</h4>
+                                    <p>Conserve water by using collected rainwater or stored water. Water your plants early in the morning or late in the evening to minimize evaporation and help prevent fungal issues.</p>
+                                    <a href="https://www.youtube.com/results?search_query=water+wisely+for+plants" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Support Soil Life</h4>
+                                    <p>Don't over-dig or overwater your soil. Let natural helpers like earthworms and microorganisms do their essential work.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Support+Soil+Life" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Rotate and Rest</h4>
+                                    <p>Practice crop rotation by planting different types of crops in the same area each season. Also, allow your garden soil to rest occasionally.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Rotate+and+Rest+for+plants" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Choose Indigenous Seeds</h4>
+                                    <p>Opt for non-GMO, local, or heirloom seeds that are well-suited to your region's climate and conditions. These varieties are often more resilient.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Choose+Indigenous+Seeds" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="box">
-                    <h3>Pesticide Control</h3>
-                    <div class="plant-card">
-                        <img src="https://bioprotectionportal.com/wp-content/uploads/2024/04/CABI_IPM_08.04.2024-900px.png?x44573" alt="Pesticide">
-                        <div class="plant-box">
-                            <h4>• Identify First</h4>
-                            <p>Accurately diagnose the insect or fungus before choosing a specific treatment.</p>
-                        </div>
-                        <div class="plant-box">
-                            <h4>• Safety Gear</h4>
-                            <p>Always wear gloves and masks when handling concentrated chemical inputs.</p>
+                <div class="plant-type">
+                    <div class="box">
+                        <h3>Pesticide</h3>
+                        <div class="plant-grid">
+                            <div class="plant-card">
+                                <img src="https://bioprotectionportal.com/wp-content/uploads/2024/04/CABI_IPM_08.04.2024-900px.png?x44573" alt="soil pesticide plant">
+                                <div class="plant-box">
+                                    <h4>•Identify the Problem First</h4>
+                                    <p>Before applying any pesticide, diagnose the issue correctly. Is it an insect, fungus, or weed? Accurate identification helps you choose the right treatment and avoid unnecessary chemical use.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Identify+the+Problem+First+in+plants" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Choose the Right Type</h4>
+                                    <p>Select a pesticide based on the specific threat:
+                                        <br><b>Insecticides</b> for harmful bugs (e.g., aphids, borers)
+                                        <br><b>Fungicides</b> for fungal diseases (e.g., blight, rot)
+                                        <br><b>Herbicides</b> for weeds
+                                        <br><b>Nematicides</b> for soil-dwelling pests like nematodes</p>
+                                    <a href="https://www.youtube.com/results?search_query=%E2%80%A2Choose+the+Right+Type++of+fertilizers" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Follow Label Instructions Strictly</h4>
+                                    <p>Always read and follow the manufacturer’s guidelines on dosage, mixing, and safety precautions. Overuse harms plants, soil life, and health.</p>
+                                    <a href="https://www.youtube.com/results?search_query=follow+label+instructions+strictly+for+pesticide" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Apply at the Right Time</h4>
+                                    <p>Spray early morning or late evening to avoid evaporation and protect pollinators like bees. Don’t apply before rain to prevent runoff.</p>
+                                    <a href="https://www.youtube.com/results?search_query=apply+at+the+right+time+for+usage+of+pesticide" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Use Targeted Application</h4>
+                                    <p>Only treat affected areas rather than broadcasting chemicals everywhere. This protects beneficial soil organisms and reduces chemical load.</p>
+                                    <a href="https://www.youtube.com/results?search_query=use+targeted+application+in+pesticide" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Rotate Pesticides to Prevent Resistance</h4>
+                                    <p>Avoid using the same pesticide repeatedly. Rotate between different modes of action to prevent pests and fungi from developing resistance.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Rotate+Pesticides+to+Prevent+Resistance" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Wear Protective Gear</h4>
+                                    <p>Always use gloves, masks, and eye protection during mixing and spraying. Wash your hands and equipment after use.</p>
+                                    <a href="https://www.youtube.com/results?search_query=wear+protective+gear+when+using+pesticides" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Monitor for Side Effects</h4>
+                                    <p>Check plants regularly after spraying for signs of phytotoxicity (yellowing, wilting) or recurring infestations. Adjust treatment if needed.</p>
+                                    <a href="https://www.youtube.com/results?search_query=monitor+for+side+effects+for+pesticides" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Dispose Responsibly</h4>
+                                    <p>Never dump leftover pesticides or wash water into the garden or drains. Follow proper disposal methods outlined on the label.</p>
+                                    <a href="https://www.youtube.com/results?search_query=dispose+responsibly+for+pesticides" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Combine with Integrated Pest Management (IPM)</h4>
+                                    <p>Use pesticides as a last resort. Combine them with natural methods—like crop rotation, neem oil spray, and traps—to reduce dependency on chemicals.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Combine+with+Integrated+Pest+Management+(IPM)" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="back-button" onclick="showSection('start-box')">← Back to Selection</button>
+            <div class="back-button-container">
+                <button class="back-button" onclick="showSection('start-box', true)">← Back to Main Selection</button>
+            </div>
         </div>
 
         <div id="water-section" class="content-section">
-            <h2>Water Plants Guide</h2>
+            <h1>Water Plants</h1>
             <div class="section-pair">
-                <div class="box">
-                    <h3>Organic Growth</h3>
-                    <div class="plant-card">
-                        <img src="data:image/jpeg;base64,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">
-                            <h4>• Clean Water</h4>
-                            <p>Use filtered or dechlorinated water to prevent root rot and early contamination.</p>
+                <div class="plant-type">
+                    <div class="box">
+                        <h3>Organic</h3>
+                        <div class="plant-grid">
+                            <div class="plant-card">
+                                <img src="https://cdn.brookfieldresidential.net/-/media/brp/global/modules/news-and-blog/corporate/plants-that-grow-in-water-without-soil/woman-propagating-pothos-plant-from-leaf-cutting-in-water-1189.jpg?rev=19276761267f44f7991a6ba4655ee3e2&cx=0.5&cy=0.5" alt="organic water plant"/>
+                                <div class="plant-box">
+                                    <h4>•Use Organic Aquatic Substrates</h4>
+                                    <p>Support plant roots with natural substrates like washed sand, gravel, or coco coir. Avoid synthetic pebbles or fertilizers that may leach harmful chemicals into the water.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Use+Organic+Aquatic+Substrates" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Enrich with Natural Nutrients</h4>
+                                    <p>Add organic boosters like banana peel water, vermicompost tea, aloe vera extract, or seaweed solution. These provide minerals without harming aquatic life.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Enrich+with+Natural+Nutrients" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Encourage Aquatic Diversity</h4>
+                                    <p>Grow multiple plant types—floating (duckweed, red root floater), submerged (anacharis, hornwort), and marginal (lotus, watercress). A variety keeps the system balanced and pest-resistant.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Encourage+Aquatic+Diversity" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Avoid Artificial Additives</h4>
+                                    <p>Say no to chemical fertilizers or algaecides. Instead, use diluted panchagavya, jeevamrutham, or compost extract in minimal amounts to feed plants naturally.</p>
+                                    <a href="https://www.youtube.com/results?search_query=avoid+artificial+additives+in+fertilizers" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Keep Water Oxygenated</h4>
+                                    <p>Ensure good oxygen flow using aquatic plants like vallisneria or anacharis, or install a gentle air stone. Oxygen supports root health and beneficial microorganisms.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Keep+Water+Oxygenated" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Use Natural Pest Control</h4>
+                                    <p>If pests appear (like aphids on lotus), use neem oil spray, fermented garlic water, or simply rinse with clean water. Avoid synthetic insecticides that disrupt water balance.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Use+Natural+Pest+Control" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Maintain pH Balance Organically</h4>
+                                    <p>Add natural buffers like crushed coral (if water is too acidic) or peat moss (if alkaline). Test pH regularly and adjust gently with natural means.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Maintain+pH+Balance+Organically+in+soil" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Harvest Mindfully</h4>
+                                    <p>Trim overgrown plants like duckweed or water lettuce regularly to prevent overcrowding. Compost the excess or use as mulch for soil plants.</p>
+                                    <a href="https://www.youtube.com/results?search_query=harvest+mindfully+for+pesticides" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Reuse and Recycle</h4>
+                                    <p>Use old tubs, broken pots, or buckets as small water gardens. Line them with coconut fiber and let nature flourish without expensive equipment.</p>
+                                    <a href="https://www.youtube.com/results?search_query=reuse+and+recycle+the+fertilizers+organically" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="box">
-                    <h3>Controlled Solutions</h3>
-                    <div class="plant-card">
-                        <img src="https://gogarden.co.in/cdn/shop/files/2_fab2ac2a-9f93-4bca-a9a7-e36ddf08e520.jpg?v=1741858004" alt="Water Solutions">
-                        <div class="plant-box">
-                            <h4>• NPK Solutions</h4>
-                            <p>Apply liquid fertilizers in precise quantities to prevent unwanted algae blooms.</p>
+                <div class="plant-type">
+                    <div class="box">
+                        <h3>Pesticide</h3>
+                        <div class="plant-grid">
+                            <div class="plant-card">
+                                <img src="https://gogarden.co.in/cdn/shop/files/2_fab2ac2a-9f93-4bca-a9a7-e36ddf08e520.jpg?v=1741858004" alt="water pesticide plants"/>
+                                <div class="plant-box">
+                                    <h4>•Start with Clean Setup</h4>
+                                    <p>Use fresh water in clean containers to reduce the risk of early contamination. Prefer filtered tap water or well water.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Start+with+Clean+Setup" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Use Controlled Nutrient Solutions</h4>
+                                    <p>When using chemical fertilizers (like NPK or aquatic plant food), apply them in recommended quantities only. Overuse can harm plants and lead to algae blooms.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Use+Controlled+Nutrient+Solutions" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Apply Safe Aquatic Pesticides</h4>
+                                    <p>Use pesticides that are labeled safe for aquatic environments, such as mild copper-based algaecides or hydrogen peroxide solutions for fungal control. Avoid broad-spectrum chemicals.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Apply+Safe+Aquatic+Pesticides" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Monitor Algae Growth</h4>
+                                    <p>Chemical fertilizers can promote unwanted algae. Use UV sterilizers, copper strips, or diluted commercial algaecides carefully to maintain balance.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Monitor+Algae+Growth" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Control Pests Precisely</h4>
+                                    <p>If pests like aphids, snails, or fungal infections occur, use targeted treatments like potassium permanganate dips, baking soda sprays, or insecticidal soaps in low concentration.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Control+Pests+Precisely" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Use Chemical Substrates Cautiously</h4>
+                                    <p>Some commercial aquatic soil mixes may contain slow-release fertilizers or pH adjusters. Make sure they're intended for water plants and used according to instructions.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Use+Chemical+Substrates+Cautiously+in+plants" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Ensure Regular Water Change</h4>
+                                    <p>Replace a portion of water (20–30%) weekly to flush out chemical buildup. Use dechlorinated water to avoid harming plants further.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Ensure+Regular+Water+Change" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Avoid Cross-Contamination</h4>
+                                    <p>Do not mix tools, containers, or water from organic or untreated systems with pesticide-treated setups to avoid imbalance or unexpected reactions.</p>
+                                    <a href="https://www.youtube.com/results?search_query=Avoid+Cross-Contamination+in+plants+that+grow+in+water" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                                <div class="plant-box">
+                                    <h4>•Dispose of Waste Responsibly</h4>
+                                    <p>Do not pour chemically treated water into the garden or drains. Let it neutralize in open containers or dilute it heavily before disposal.</p>
+                                    <a href="https://www.youtube.com/results?search_query=dispose+of+waste+water+that+are+treated+with+pesticidesresponsibly" target="_blank"><i class="fa-solid fa-hand-point-right" style="color: #FFD43B;"></i>&nbsp;Watch Tutorial</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="back-button" onclick="showSection('start-box')">← Back to Selection</button>
+            <div class="back-button-container">
+                <button class="back-button" onclick="showSection('start-box', true)">← Back to Main Selection</button>
+            </div>
         </div>
     </main>
 
     <footer class="footer">
         <div class="footer_top">
-            <div>
-                <h3>EcoVANA</h3>
-                <p>Empowering plant lovers to transform homes into green spaces with ease and joy.</p>
+            <div class="footer_about">
+                <h3 style="position: relative; left: -100px;">EcoVANA</h3>
+                <p>EcoVANA empowers plant lovers to transform <br>their homes into green spaces with ease and joy. <br>Join the eco-movement today!</p>
             </div>
-            <div>
-                <h3>Contact Us</h3>
-                <p>support@ecovana.com</p>
-                <p>Hyderabad, India</p>
+            <div class="footer_contact">
+                <h3 style="position: relative; left: -15px;">Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> support@ecovana.com</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-map-marker-alt"></i> Hyderabad, India</p>
+            </div>
+            <div class="follow_us">
+                <h3>Follow Us</h3>
+                <div class="social_media">
+                    <i class="fa-lg fa-brands fa-instagram"></i>
+                    <i class="fa-lg fa-brands fa-twitter"></i>
+                    <i class="fa-lg fa-brands fa-youtube"></i>
+                    <i class="fa-lg fa-brands fa-facebook"></i>
+                </div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
-            <p>© 2025 EcoVANA. Made with ❤️</p>
+        <div class="footer_bottom">
+            <hr>
+            <br>
+            <div class="copy_right">
+                <p>© 2025 EcoVANA. All rights reserved.<br><span style="padding-left: 100px;">Made with❤️</span></p>
+            </div>
         </div>
     </footer>
 
     <script>
+        const sideMenu = document.getElementById("sideMenu");
+        const mainTitle = document.getElementById("main-title");
+
         function showSection(id) {
             document.getElementById('start-box').style.display = 'none';
             document.getElementById('soil-section').style.display = 'none';
             document.getElementById('water-section').style.display = 'none';
-            const mainTitle = document.getElementById('main-title');
 
             if (id === 'start-box') {
-                document.getElementById(id).style.display = 'grid';
+                document.getElementById(id).style.display = 'flex';
                 mainTitle.style.display = 'block';
             } else {
                 document.getElementById(id).style.display = 'block';
                 mainTitle.style.display = 'none';
             }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo(0, 0);
         }
 
-        function Open() { document.getElementById("sideMenu").style.right = "0"; }
-        function Close() { document.getElementById("sideMenu").style.right = "-320px"; }
+        function Open() {
+            document.getElementsByClassName("header_menu")[0].style.right = "0px";
+            document.getElementsByClassName("header_menu")[0].style.top = "0px";
+            document.querySelector('.header_bars').setAttribute('aria-expanded', 'true');
+        }
+
+        function Close() {
+            document.getElementsByClassName("header_menu")[0].style.right = "-250px";
+            document.querySelector('.header_bars').setAttribute('aria-expanded', 'false');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('start-box');
+        });
     </script>
 </body>
 </html>
