@@ -12,9 +12,9 @@
         :root {
             --primary-green: #2d5a47;
             --accent-green: #3b7c62;
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --header-green: #c3e9c2;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --glass-white: rgba(255, 255, 255, 0.85);
+            --header-bg: rgba(195, 233, 194, 0.9);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
@@ -22,210 +22,194 @@
             padding: 0;
             box-sizing: border-box;
             text-decoration: none;
+            overflow: hidden;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
                         url('https://www.hdwallpapers.in/download/road_path_grass_field_clouds_sky_forest_nature_landscape_wallpaper_background_4k_hd_nature-HD.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            color: #333;
+            line-height: 1.6;
             padding-top: 100px;
-            overflow-x: hidden;
         }
 
-        /* --- Header & Navigation --- */
+        /* --- Modern Header --- */
         .header {
             width: 100%;
-            background: var(--header-green);
-            backdrop-filter: blur(8px);
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: fixed;
             top: 0;
-            left: 0;
             z-index: 1000;
             height: 80px;
             padding: 0 5%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
-        .header_logo img { height: 60px; border-radius: 10px; }
+        .header_logo img { height: 60px; border-radius: 8px; }
 
-        .nav_desktop { display: flex; gap: 20px; }
-
-        .nav_desktop a {
-            color: #333;
+        .header_navLinks a {
+            font-size: 15px;
             font-weight: 600;
-            padding: 8px 15px;
+            color: #1a1a1a;
+            margin: 0 15px;
             transition: var(--transition);
+            position: relative;
         }
 
-        .nav_desktop a:hover {
-            color: var(--primary-green);
-            background: rgba(255,255,255,0.4);
-            border-radius: 8px;
-        }
-
-        /* --- Sidebar Menu (Hidden by Default) --- */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            right: -300px; /* Fully hidden */
-            width: 280px;
-            height: 100vh;
-            background: white;
-            z-index: 2000;
-            transition: var(--transition);
-            box-shadow: -5px 0 20px rgba(0,0,0,0.2);
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .sidebar.active {
-            right: 0; /* Slides into view */
-        }
-
-        .sidebar a {
-            font-size: 1.1rem;
-            color: #333;
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-            display: block;
-            transition: var(--transition);
-        }
-
-        .sidebar a:hover {
+        .header_navLinks a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
             background: var(--primary-green);
-            color: white;
-            padding-left: 20px;
+            transition: var(--transition);
         }
 
-        .close-btn {
-            align-self: flex-end;
-            font-size: 2rem;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
+        .header_navLinks a:hover::after { width: 100%; }
 
-        .menu-toggle {
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: #333;
-        }
-
-        /* --- Selection Layout --- */
-        .container {
+        /* --- Selection Cards --- */
+        .main-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        h1.main-title {
+        h1.title {
             text-align: center;
             color: white;
-            margin-bottom: 40px;
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.4);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+            margin-bottom: 50px;
         }
 
-        .card-grid {
+        .button-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
-            justify-content: center;
+            justify-items: center;
         }
 
-        .card {
-            background: var(--glass-bg);
-            border-radius: 30px;
+        .plant-option {
+            background: var(--glass-white);
+            border-radius: 24px;
             padding: 25px;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.4);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            max-width: 400px;
         }
 
-        .card:hover {
+        .plant-option:hover {
             transform: translateY(-15px);
             background: white;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
         }
 
-        .card img {
+        .plant-option img {
             width: 100%;
-            height: 280px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 20px;
+            border-radius: 18px;
             margin-bottom: 20px;
         }
 
-        .card span {
+        .plant-option span {
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary-green);
+            display: block;
         }
 
-        /* --- Details View --- */
+        /* --- Detail Layout --- */
         .content-section {
             display: none;
-            animation: fadeIn 0.6s ease forwards;
+            animation: slideUp 0.6s ease-out forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .info-grid {
+        .section-pair {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 30px;
         }
 
-        .info-box {
-            background: var(--glass-bg);
+        .box {
+            background: var(--glass-white);
+            backdrop-filter: blur(5px);
             border-radius: 25px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .info-box h3 {
-            font-size: 1.8rem;
+        .box h3 {
+            font-size: 2rem;
             color: var(--accent-green);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #ddd;
+            display: inline-block;
         }
 
-        .plant-tip {
+        .plant-box {
             background: white;
-            padding: 20px;
             border-radius: 15px;
-            margin-bottom: 15px;
-            border-left: 5px solid var(--accent-green);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 6px solid var(--accent-green);
+            transition: var(--transition);
+        }
+
+        .plant-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .watch-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: #b8860b;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* --- Mobile Navigation --- */
+        .menu-btn { display: none; cursor: pointer; font-size: 24px; }
+
+        @media (max-width: 900px) {
+            .header_navLinks { display: none; }
+            .menu-btn { display: block; }
+            .section-pair { grid-template-columns: 1fr; }
         }
 
         .back-btn {
             background: var(--primary-green);
             color: white;
-            padding: 12px 40px;
+            padding: 12px 30px;
             border-radius: 50px;
             border: none;
             cursor: pointer;
-            display: block;
-            margin: 40px auto;
             font-weight: 600;
+            margin-top: 40px;
+            transition: var(--transition);
         }
 
-        /* Responsive Settings */
-        @media (max-width: 900px) {
-            .nav_desktop { display: none; }
-            .info-grid { grid-template-columns: 1fr; }
-        }
+        .back-btn:hover { background: #1a3a2e; transform: scale(1.05); }
+
     </style>
 </head>
 <body>
