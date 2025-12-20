@@ -9,14 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        :root {
-            --primary-green: #2d5a47;
-            --accent-green: #3b7c62;
-            --glass-bg: rgba(255, 255, 255, 0.9);
-            --header-bg: #c3e9c2;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
+        /* General Styles */
         * {
             margin: 0;
             padding: 0;
@@ -25,164 +18,495 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('https://www.hdwallpapers.in/download/road_path_grass_field_clouds_sky_forest_nature_landscape_wallpaper_background_4k_hd_nature-HD.jpg');
+            font-family: sans-serif;
+            background-image: url('https://www.hdwallpapers.in/download/road_path_grass_field_clouds_sky_forest_nature_landscape_wallpaper_background_4k_hd_nature-HD.jpg');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             background-attachment: fixed;
-            padding-top: 100px;
+            background-color: #f0f7f4;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             overflow-x: hidden;
+            padding-top: 120px; /* Adjusted padding-top for the expanded header */
+        }
+        
+        html, body {
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
-        /* --- Header & Navigation --- */
+        main {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        
+
+        h1,h2 {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 2.8em;
+        }
+
+        h3 {
+            text-align: center;
+            color: #3b7c62;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        h4 {
+            color: #3b7c62;
+            margin-top: 20px;
+            margin-bottom: 0;
+            font-size: 1.4em;
+            text-align: left;
+        }
+
+        p {
+            text-align: left;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        li {
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            /* font-weight: bold; */
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Header and Navigation Styles */
         .header {
             width: 100%;
-            background: var(--header-bg);
-            backdrop-filter: blur(8px);
+            background-color: #c3e9c2;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1000;
-            height: 80px;
-            padding: 0 5%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 100;
+            height: 90px;
+            padding: 0 10px;
+        }
+        
+        .header_logo img {
+            height: 90px;
+            width: auto;
+            object-fit: contain;
         }
 
-        .header_logo img { height: 60px; border-radius: 10px; }
-
-        .header_navLinks { display: flex; gap: 15px; }
-
+        .header_navLinks a, .Cart_Login a {
+            font-size: 17px;
+            color: black;
+            padding: 10px 8px;
+            font-family: sans-serif;
+        }
+        
         .header_navLinks a {
-            color: #333;
-            font-weight: 600;
-            padding: 8px 12px;
-            transition: var(--transition);
+            margin: 12px;
         }
 
         .header_navLinks a:hover {
-            color: var(--primary-green);
-            background: rgba(255,255,255,0.4);
-            border-radius: 8px;
+            background-color: #5C4033;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
         }
 
-        /* --- Sidebar Menu (Hidden Completely) --- */
-        .header_menu {
-            position: fixed;
-            top: 0;
-            right: -100%; /* Completely off-screen */
-            width: 280px;
-            height: 100vh;
-            background: white;
-            z-index: 2001;
-            transition: var(--transition);
-            box-shadow: -10px 0 30px rgba(0,0,0,0.2);
-            padding: 40px 20px;
+        .Cart_Login {
+            position: relative;
+            margin-right: 0.5%;
+        }
+
+        .Login_option {
+            position: relative;
+            display: inline-block;
+        }
+
+        .Login_SignUp {
+            display: none;
+            position: absolute;
+            top: 75%;
+            left: 40%;
+            transform: translateX(-50%);
+            background-color: #CDEAC0;
+            border-radius: 5px;
+            padding: 5px 10px;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        .Login_option:hover .Login_SignUp {
+            display: block;
+        }
+
+        .header_side_bars {
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .header_bars {
+            padding: 10px;
+            cursor: pointer;
         }
 
-        .header_menu.active {
-            right: 0; /* Slides into view */
+        .header_menu {
+            position: fixed;
+            width: 250px;
+            height: 100vh;
+            top: 0;
+            right: -250px;
+            transition: right 1s ease;
+            background-color: #CDEAC0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            padding-top: 15px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
         }
 
         .submenu {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            transition: var(--transition);
+            width: 100%;
+            padding: 10px 0;
+            border-bottom: 1px solid #5C4033;
+            cursor: pointer;
+            text-align: right;
         }
 
         .submenu a {
-            color: #333;
+            padding-right: 15px;
+            color: black;
             display: block;
-            width: 100%;
+            text-align: right;
+            font-size: 1.1em;
+        }
+        
+        .submenu a i {
+            margin-right: 10px;
         }
 
         .submenu:hover {
-            background: var(--primary-green);
-            padding-left: 25px;
+            background-color: #5C4033;
+            color: white;
         }
 
-        .submenu:hover a { color: white; }
+        .submenu:hover a {
+            color: white;
+            text-shadow: 1px 2px 4px grey;
+        }
 
         .cross {
-            align-self: flex-end;
-            font-size: 2.5rem;
+            font-size: 35px;
+            color: black;
+            width: fit-content;
+            font-style: normal;
+            font-weight: bold;
+            padding: 4px 10px;
             cursor: pointer;
-            color: #333;
+            margin-top: 12px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        
+        .cross:hover {
+            background-color: red;
+            color: white;
+        }
+        
+        /* Footer Styles */
+        .footer {
+            width: 100%;
+            background-color: #8C7153;
+            color: white;
+            padding-top: 2rem;
+        }
+        
+        .footer_top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            color: white;
+            padding: 0.5rem 0;
+            text-align: left;
+        }
+        
+        .footer h2, .footer h3 {
+            padding-bottom: 0.2rem;
+            color: #FFF4B0;
+        }
+        
+        .footer_contact, .footer_about, .follow_us {
+            line-height: 24px;
+        }
+        
+        .social_media {
+            padding: 5px;
+        }
+        
+        .social_media i {
+            padding-right: 8px;
+        }
+        
+        .social_media i:hover {
+            color: #FFF4B0;
+        }
+        
+        .footer_bottom {
+            padding: 20px;
+            color: white;
+            background-color: #8C7153;
+        }
+        
+        .footer_bottom hr {
+            border: none;
+            height: 2px;
+            background-color: #ffffff;
+            margin: 10px 0;
+            width: 100%;
+        }
+        
+        .copy_right {
+            display: flex;
+            justify-self: center;
+            text-align: center;
+        }
+
+        /* Main Content Sections */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+            margin-bottom: 200px;
+        }
+
+        .plant-option {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #f0f7f4;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+        }
+
+        .plant-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .plant-option img {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .plant-option span {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #285943;
+            font-size: 1.5em;
+        }
+
+        .content-section {
+            display: none;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-top: 40px;
+        }
+
+        .section-pair {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .plant-type {
+            display: flex;
+            justify-content: center;
+            flex: 1 1 45%;
+            min-width: 350px;
+            max-width: 50%;
+        }
+
+        .box {
+            width: 100%;
+            border-radius: 15px;
+            padding: 25px;
+            background: white;
+            box-sizing: border-box;
+            opacity: 5;
+        }
+
+        .plant-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            justify-items: center;
+        }
+
+        .plant-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            position: relative;
+            top: -20px;
+        }
+
+        .plant-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .plant-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .plant-box {
+            background-color: white;
+            border-left: 5px solid #3b7c62;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            display: block;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .back-button-container {
+            text-align: center;
+            margin-top: 40px;
             margin-bottom: 20px;
         }
 
-        .header_bars {
-            cursor: pointer;
-            font-size: 1.5rem;
-            display: none; /* Hidden on desktop */
-        }
-
-        /* --- Overlay Background --- */
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 2000;
-            display: none;
-            backdrop-filter: blur(4px);
-        }
-
-        /* --- Responsive UI Adjustments --- */
-        @media (max-width: 1010px) {
-            .header_navLinks, .Cart_Login { display: none; }
-            .header_bars { display: block; }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .card {
-            background: var(--glass-bg);
-            border-radius: 30px;
-            padding: 25px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.4);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .card:hover { transform: translateY(-10px); background: #fff; }
-
-        .card img { width: 100%; height: 250px; object-fit: cover; border-radius: 20px; margin-bottom: 15px; }
-
-        .card span { font-size: 1.5rem; font-weight: 700; color: var(--primary-green); }
-
-        .content-section { display: none; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
         .back-button {
-            background: var(--primary-green);
+            background-color: #2f5d62;
             color: white;
-            padding: 12px 35px;
-            border-radius: 50px;
+            padding: 12px 25px;
             border: none;
+            border-radius: 8px;
             cursor: pointer;
-            margin-top: 30px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
+
+        .back-button:hover {
+            background-color: #3b7c62;
+            transform: translateY(-2px);
+        }
+        
+        /* Media Queries for Responsiveness */
+        @media (min-width: 1010px) {
+            .header_side_bars {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1010px) {
+            .header_navLinks, .Cart_Login {
+                display: none;
+            }
+            .header_side_bars {
+                display: flex;
+            }
+            .header_menu {
+                top: 0px;
+                right: -250px;
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            h1 { font-size: 2.4em; }
+            h2 { font-size: 1.8em; }
+            h4 { font-size: 1.2em; }
+            .button-container, .section-pair { gap: 20px; }
+            .plant-option { min-width: 280px; }
+            .plant-option img { height: 250px; }
+            .plant-type { flex: 1 1 48%; min-width: 300px; max-width: unset; }
+            .plant-card img { height: 220px; }
+        }
+
+        @media screen and (max-width: 768px) {
+            body { padding: 10px; }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.6em; }
+            h4 { font-size: 1.1em; margin-top: 15px; }
+            p, ul, li { font-size: 0.95em; }
+            .header_navLinks, .Cart_Login { display: none; }
+            .header_side_bars { display: flex; }
+            .header { padding: 0 20px; }
+            .button-container, .section-pair { flex-direction: column; gap: 25px; margin-top: 30px; }
+            .plant-option, .plant-type, .box, .plant-card { width: 100%; min-width: unset; }
+            .plant-option img { height: 200px; }
+            .box { padding: 20px; }
+            .plant-card { padding: 20px; }
+            .plant-card img { height: 180px; }
+            .footer_top { flex-direction: column; align-items: center; text-align: center; }
+            .social_media { justify-content: center; }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 { font-size: 1.8em; margin-bottom: 25px; }
+            h2 { font-size: 1.4em; }
+            h4 { font-size: 1.1em; }
+            p, ul, li { font-size: 0.9em; }
+            .plant-option img { height: 180px; }
+            .plant-card img { height: 150px; }
+            .plant-box { padding: 12px 15px; }
+            .back-button { padding: 10px 20px; font-size: 1em; }
+            .header_logo img { height: 50px; }
+        }
+
     </style>
 </head>
 <body>
@@ -370,7 +694,7 @@
                         <h3>Organic</h3>
                         <div class="plant-grid">
                             <div class="plant-card">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLk5loPa39-TWkXCr7PIAXEwWOCRuQkaZlQ&s"/>
+                                <img src="https://cdn.brookfieldresidential.net/-/media/brp/global/modules/news-and-blog/corporate/plants-that-grow-in-water-without-soil/woman-propagating-pothos-plant-from-leaf-cutting-in-water-1189.jpg?rev=19276761267f44f7991a6ba4655ee3e2&cx=0.5&cy=0.5" alt="organic water plant"/>
                                 <div class="plant-box">
                                     <h4>•Use Organic Aquatic Substrates</h4>
                                     <p>Support plant roots with natural substrates like washed sand, gravel, or coco coir. Avoid synthetic pebbles or fertilizers that may leach harmful chemicals into the water.</p>
