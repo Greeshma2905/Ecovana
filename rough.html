@@ -12,8 +12,8 @@
         :root {
             --primary-green: #2d5a47;
             --accent-green: #3b7c62;
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --header-green: #c3e9c2;
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --header-bg: #c3e9c2;
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
@@ -38,7 +38,7 @@
         /* --- Header & Navigation --- */
         .header {
             width: 100%;
-            background: var(--header-green);
+            background: var(--header-bg);
             backdrop-filter: blur(8px);
             display: flex;
             justify-content: space-between;
@@ -54,90 +54,104 @@
 
         .header_logo img { height: 60px; border-radius: 10px; }
 
-        .nav_desktop { display: flex; gap: 20px; }
+        .header_navLinks { display: flex; gap: 15px; }
 
-        .nav_desktop a {
+        .header_navLinks a {
             color: #333;
             font-weight: 600;
-            padding: 8px 15px;
+            padding: 8px 12px;
             transition: var(--transition);
         }
 
-        .nav_desktop a:hover {
+        .header_navLinks a:hover {
             color: var(--primary-green);
             background: rgba(255,255,255,0.4);
             border-radius: 8px;
         }
 
-        /* --- Sidebar Menu (Hidden by Default) --- */
-        .sidebar {
+        /* --- Sidebar Menu (Hidden Completely) --- */
+        .header_menu {
             position: fixed;
             top: 0;
-            right: -300px; /* Fully hidden */
+            right: -100%; /* Completely off-screen */
             width: 280px;
             height: 100vh;
             background: white;
-            z-index: 2000;
+            z-index: 2001;
             transition: var(--transition);
-            box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.2);
             padding: 40px 20px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
         }
 
-        .sidebar.active {
+        .header_menu.active {
             right: 0; /* Slides into view */
         }
 
-        .sidebar a {
-            font-size: 1.1rem;
-            color: #333;
-            padding: 12px;
+        .submenu {
+            padding: 15px;
             border-bottom: 1px solid #eee;
-            display: block;
             transition: var(--transition);
         }
 
-        .sidebar a:hover {
-            background: var(--primary-green);
-            color: white;
-            padding-left: 20px;
+        .submenu a {
+            color: #333;
+            display: block;
+            width: 100%;
         }
 
-        .close-btn {
+        .submenu:hover {
+            background: var(--primary-green);
+            padding-left: 25px;
+        }
+
+        .submenu:hover a { color: white; }
+
+        .cross {
             align-self: flex-end;
-            font-size: 2rem;
+            font-size: 2.5rem;
             cursor: pointer;
+            color: #333;
             margin-bottom: 20px;
         }
 
-        .menu-toggle {
+        .header_bars {
             cursor: pointer;
             font-size: 1.5rem;
-            color: #333;
+            display: none; /* Hidden on desktop */
         }
 
-        /* --- Selection Layout --- */
+        /* --- Overlay Background --- */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            display: none;
+            backdrop-filter: blur(4px);
+        }
+
+        /* --- Responsive UI Adjustments --- */
+        @media (max-width: 1010px) {
+            .header_navLinks, .Cart_Login { display: none; }
+            .header_bars { display: block; }
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        h1.main-title {
-            text-align: center;
-            color: white;
-            margin-bottom: 40px;
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.4);
-        }
-
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
-            justify-content: center;
+            margin-top: 50px;
         }
 
         .card {
@@ -151,80 +165,23 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        .card:hover {
-            transform: translateY(-15px);
-            background: white;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
+        .card:hover { transform: translateY(-10px); background: #fff; }
 
-        .card img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            border-radius: 20px;
-            margin-bottom: 20px;
-        }
+        .card img { width: 100%; height: 250px; object-fit: cover; border-radius: 20px; margin-bottom: 15px; }
 
-        .card span {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-green);
-        }
+        .card span { font-size: 1.5rem; font-weight: 700; color: var(--primary-green); }
 
-        /* --- Details View --- */
-        .content-section {
-            display: none;
-            animation: fadeIn 0.6s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-        }
-
-        .info-box {
-            background: var(--glass-bg);
-            border-radius: 25px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        .info-box h3 {
-            font-size: 1.8rem;
-            color: var(--accent-green);
-            margin-bottom: 20px;
-        }
-
-        .plant-tip {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            border-left: 5px solid var(--accent-green);
-        }
-
-        .back-btn {
+        .content-section { display: none; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .back-button {
             background: var(--primary-green);
             color: white;
-            padding: 12px 40px;
+            padding: 12px 35px;
             border-radius: 50px;
             border: none;
             cursor: pointer;
-            display: block;
-            margin: 40px auto;
-            font-weight: 600;
-        }
-
-        /* Responsive Settings */
-        @media (max-width: 900px) {
-            .nav_desktop { display: none; }
-            .info-grid { grid-template-columns: 1fr; }
+            margin-top: 30px;
         }
     </style>
 </head>
