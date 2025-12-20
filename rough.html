@@ -1,215 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EcoVANA</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EcoVANA | Plant Care Guide</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
 <style>
-/* RESET */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: Arial, sans-serif;
+  text-decoration:none;
 }
 
 body{
-  background:#eef6ef;
+  font-family:'Roboto', sans-serif;
+  background-image:url('https://www.hdwallpapers.in/download/road_path_grass_field_clouds_sky_forest_nature_landscape_wallpaper_background_4k_hd_nature-HD.jpg');
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  background-color:#f0f7f4;
+  color:#333;
+  line-height:1.6;
+  padding-top:100px;
   overflow-x:hidden;
 }
 
-/* PAGE CONTENT (MOVES LEFT) */
+/* ===== PAGE CONTENT (MOVES LEFT) ===== */
 #page-content{
-  transition: transform 0.4s ease;
+  transition:transform 0.4s ease;
 }
 
 #page-content.shifted{
-  transform: translateX(-320px);
+  transform:translateX(-280px);
 }
 
-/* HEADER */
-header{
+/* ===== HEADER ===== */
+.header{
+  width:100%;
+  background-color:#c3e9c2;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   position:fixed;
   top:0;
   left:0;
-  width:100%;
-  height:70px;
-  background:#cfeec2;
+  z-index:1000;
+  height:80px;
+  padding:0 5%;
+  box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header_logo img{
+  height:60px;
+}
+
+.header_navLinks{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 20px;
-  z-index:2000;
+  gap:15px;
 }
 
-.logo img{
-  height:45px;
+.header_navLinks a{
+  font-size:16px;
+  color:#242020;
+  font-weight:500;
+  padding:8px 12px;
 }
 
-.menu-btn{
-  font-size:22px;
+.header_side_bars{
+  display:none;
+  font-size:1.6rem;
   cursor:pointer;
 }
 
-/* MAIN CONTENT */
+/* ===== MAIN ===== */
 main{
-  padding-top:100px;
-  padding-bottom:60px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:30px;
+  width:95%;
+  max-width:1200px;
+  margin:0 auto;
+  min-height:80vh;
 }
 
-/* CARD */
-.card{
-  width:90%;
-  max-width:700px;
-  background:white;
-  border-radius:20px;
+h1,h2{
+  text-align:center;
+  color:white;
+  margin-bottom:20px;
+  font-size:clamp(1.8rem,5vw,2.8rem);
+  text-shadow:2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Cards centered */
+.button-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
+  margin:40px auto 50px;
+}
+
+.plant-option{
+  background:rgba(240,247,244,0.95);
+  border-radius:15px;
   padding:20px;
   text-align:center;
-  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+  cursor:pointer;
+  transition:0.3s;
 }
 
-.card img{
+.plant-option img{
   width:100%;
-  border-radius:15px;
+  height:250px;
+  object-fit:cover;
+  border-radius:10px;
 }
 
-.card h2{
-  margin-top:15px;
-  color:#2f6b3f;
-}
-
-/* FOOTER */
-footer{
-  background:#8c7153;
-  color:white;
-  text-align:center;
-  padding:25px;
-}
-
-footer p{
-  margin:5px 0;
-}
-
-/* SIDE MENU */
-.side-menu{
+/* ===== SIDE MENU ===== */
+.header_menu{
   position:fixed;
   top:0;
-  right:-320px;
-  width:320px;
+  right:-280px;
+  width:280px;
   height:100vh;
-  background:#d6f0c9;
+  background:#CDEAC0;
   transition:0.4s ease;
+  padding:20px;
   z-index:3000;
-  box-shadow:-5px 0 20px rgba(0,0,0,0.25);
+  box-shadow:-5px 0 15px rgba(0,0,0,0.2);
 }
 
-.side-menu.active{
+.header_menu.active{
   right:0;
 }
 
-/* MENU HEADER */
-.menu-header{
-  display:flex;
-  justify-content:flex-end;
-  padding:15px;
+/* ===== FOOTER ===== */
+.footer{
+  background-color:#8C7153;
+  color:white;
+  padding:40px 5% 20px;
+  margin-top:50px;
 }
 
-.close-btn{
-  font-size:22px;
-  cursor:pointer;
+.footer_top{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
 }
 
-/* MENU LINKS */
-.menu-links{
-  list-style:none;
-}
-
-.menu-links li{
-  padding:16px 22px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-size:17px;
-  border-bottom:1px solid rgba(0,0,0,0.15);
-  cursor:pointer;
-}
-
-.menu-links li:hover{
-  background:rgba(255,255,255,0.5);
+/* ===== RESPONSIVE ===== */
+@media (max-width:1024px){
+  .header_navLinks{display:none;}
+  .header_side_bars{display:block;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- PAGE CONTENT -->
+<!-- ===== PAGE CONTENT ===== -->
 <div id="page-content">
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">
-      <img src="./logo.jpg" alt="EcoVANA">
-    </div>
-    <div class="menu-btn" onclick="openMenu()">
-      <i class="fa-solid fa-bars"></i>
-    </div>
-  </header>
+<header class="header">
+  <div class="header_logo">
+    <img src="./logo.jpg" alt="logo">
+  </div>
 
-  <!-- MAIN -->
-  <main>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6" alt="Soil Plants">
-      <h2>Soil Plants</h2>
+  <nav class="header_navLinks">
+    <a href="./homepage.html">Home</a>
+    <a href="./PlantsModified.html">Plants</a>
+    <a href="./rough.html">PlantCare</a>
+    <a href="./essentials.html">Essentials</a>
+    <a href="./demo.html">AI Chat</a>
+  </nav>
+
+  <div class="header_side_bars" onclick="openMenu()">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+</header>
+
+<main>
+  <h1>Select a Plant Type</h1>
+
+  <div class="button-container">
+    <div class="plant-option">
+      <img src="https://media.istockphoto.com/id/1181366400/photo/in-the-hands-of-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-on.jpg">
+      <span>Soil Plants</span>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6" alt="Water Plants">
-      <h2>Water Plants</h2>
+    <div class="plant-option">
+      <img src="https://justhouseplants.com/wp-content/uploads/2022/04/indoor-plants-that-grow-in-water.jpg">
+      <span>Water Plants</span>
     </div>
-  </main>
+  </div>
+</main>
 
-  <!-- FOOTER -->
-  <footer>
-    <p><strong>EcoVANA</strong></p>
-    <p>Growing green spaces together 🌱</p>
-    <p>© 2025 EcoVANA</p>
-  </footer>
+<footer class="footer">
+  <div class="footer_top">
+    <div>
+      <h3>EcoVANA</h3>
+      <p>Empowering plant lovers to grow green spaces.</p>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>support@ecovana.com</p>
+    </div>
+  </div>
+</footer>
 
 </div>
 
-<!-- SIDE MENU -->
-<div class="side-menu" id="sideMenu">
-  <div class="menu-header">
-    <span class="close-btn" onclick="closeMenu()">✕</span>
-  </div>
-
-  <ul class="menu-links">
-    <li><i class="fa-solid fa-house"></i> Home</li>
-    <li><i class="fa-solid fa-seedling"></i> Plants</li>
-    <li><i class="fa-solid fa-leaf"></i> PlantCare</li>
-    <li><i class="fa-solid fa-box"></i> Essentials</li>
-    <li><i class="fa-solid fa-location-dot"></i> Nearby Nurseries</li>
-    <li><i class="fa-solid fa-robot"></i> AI Chatbot</li>
-    <li><i class="fa-solid fa-cart-shopping"></i> Cart</li>
-    <li><i class="fa-solid fa-user"></i> Logout</li>
-  </ul>
+<!-- ===== SIDE MENU ===== -->
+<div class="header_menu" id="mobileMenu">
+  <div style="font-size:2rem;text-align:right;cursor:pointer" onclick="closeMenu()">×</div>
+  <a href="./homepage.html">Home</a><br><br>
+  <a href="./PlantsModified.html">Plants</a><br><br>
+  <a href="./rough.html">PlantCare</a><br><br>
+  <a href="./essentials.html">Essentials</a>
 </div>
 
 <script>
 function openMenu(){
-  document.getElementById("sideMenu").classList.add("active");
+  document.getElementById("mobileMenu").classList.add("active");
   document.getElementById("page-content").classList.add("shifted");
 }
 
 function closeMenu(){
-  document.getElementById("sideMenu").classList.remove("active");
+  document.getElementById("mobileMenu").classList.remove("active");
   document.getElementById("page-content").classList.remove("shifted");
 }
 </script>
