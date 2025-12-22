@@ -3,30 +3,28 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EcoVANA</title>
+    <title>EcoVANA | Plant Care Guide</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        /* General Styles */
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             text-decoration: none;
-            box-sizing: border-box; /* Added for consistent box model */
         }
 
         body {
             font-family: 'Roboto', Arial, sans-serif;
-            background-image: url('https://static.vecteezy.com/system/resources/thumbnails/040/890/255/small_2x/ai-generated-empty-wooden-table-on-the-natural-background-for-product-display-free-photo.jpg'); /* Your background image URL */
-            background-size: cover; /* Keeps it covering the entire area */
+            background-image: url('https://static.vecteezy.com/system/resources/thumbnails/040/890/255/small_2x/ai-generated-empty-wooden-table-on-the-natural-background-for-product-display-free-photo.jpg');
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Image stays fixed while content scrolls */
+            background-attachment: fixed;
             background-color: #f0f7f4;
-            margin: 0;
-            /* Add padding-top to body to prevent content from being hidden under fixed header */
-            padding-top: 100px; /* Adjust this value based on your header's actual height */
             color: #333;
             line-height: 1.6;
             min-height: 100vh;
@@ -34,13 +32,19 @@
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
+            padding-top: 120px; /* Adjusted padding-top for the expanded header */
+        }
+        
+        html, body {
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         main {
             width: 100%;
             max-width: 1200px;
-            padding-top: 20px;
-            padding-bottom: 20px;
+            padding: 20px;
+            flex-grow: 1;
         }
 
         h1 {
@@ -84,6 +88,220 @@
             text-align: left;
         }
 
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Header and Navigation Styles */
+        .header {
+            width: 100%;
+            background-color: #c3e9c2;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            height: 90px;
+            padding: 0 10px;
+        }
+        
+        .header_logo img {
+            height: 90px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .header_navLinks a, .Cart_Login a {
+            font-size: 17px;
+            color: black;
+            padding: 10px 8px;
+        }
+        
+        .header_navLinks a {
+            margin: 12px;
+        }
+
+        .header_navLinks a:hover {
+            background-color: #5C4033;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .Cart_Login {
+            position: relative;
+            margin-right: 0.5%;
+        }
+
+        .Login_option {
+            position: relative;
+            display: inline-block;
+        }
+
+        .Login_SignUp {
+            display: none;
+            position: absolute;
+            top: 75%;
+            left: 40%;
+            transform: translateX(-50%);
+            background-color: #CDEAC0;
+            border-radius: 5px;
+            padding: 5px 10px;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        .Login_option:hover .Login_SignUp {
+            display: block;
+        }
+
+        .header_side_bars {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .header_bars {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .header_menu {
+            position: fixed;
+            width: 250px;
+            height: 100vh;
+            top: 0;
+            right: -250px;
+            transition: right 1s ease;
+            background-color: #CDEAC0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            padding-top: 15px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+        }
+
+        .submenu {
+            width: 100%;
+            padding: 10px 0;
+            border-bottom: 1px solid #5C4033;
+            cursor: pointer;
+            text-align: right;
+        }
+
+        .submenu a {
+            padding-right: 15px;
+            color: black;
+            display: block;
+            text-align: right;
+            font-size: 1.1em;
+        }
+        
+        .submenu a i {
+            margin-right: 10px;
+        }
+
+        .submenu:hover {
+            background-color: #5C4033;
+            color: white;
+        }
+
+        .submenu:hover a {
+            color: white;
+            text-shadow: 1px 2px 4px grey;
+        }
+
+        .cross {
+            font-size: 35px;
+            color: black;
+            width: fit-content;
+            font-style: normal;
+            font-weight: bold;
+            padding: 4px 10px;
+            cursor: pointer;
+            margin-top: 12px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        
+        .cross:hover {
+            background-color: red;
+            color: white;
+        }
+        
+        /* Footer Styles */
+        .footer {
+            width: 100%;
+            background-color: #8C7153;
+            color: white;
+            padding-top: 2rem;
+        }
+        
+        .footer_top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start;
+            padding: 1rem;
+            gap: 30px;
+            text-align: left;
+        }
+        
+        .footer h2, .footer h3 {
+            padding-bottom: 0.5rem;
+            color: #FFF4B0;
+        }
+        
+        .footer_contact, .footer_about, .follow_us {
+            line-height: 24px;
+        }
+        
+        .social_media {
+            padding: 5px;
+        }
+        
+        .social_media i {
+            padding-right: 8px;
+        }
+        
+        .social_media i:hover {
+            color: #FFF4B0;
+        }
+        
+        .footer_bottom {
+            padding: 20px;
+            color: white;
+            background-color: #8C7153;
+        }
+        
+        .footer_bottom hr {
+            border: none;
+            height: 2px;
+            background-color: #ffffff;
+            margin: 10px 0;
+            width: 100%;
+        }
+        
+        .copy_right {
+            display: flex;
+            justify-self: center;
+            text-align: center;
+        }
+
+        /* Main Content Sections */
         .button-container {
             display: flex;
             justify-content: center;
@@ -133,140 +351,6 @@
             padding: 0 20px;
             box-sizing: border-box;
             margin-top: 40px;
-        }
-
-        /* Header Styles */
-        .header_logo img {
-            height: 90px; /* Kept fixed height as specified previously */
-            max-width: 100%; /* Ensures image doesn't overflow its container */
-            object-fit: cover; /* Scales the image to fit the content box */
-            padding: 0px;
-            margin: 0px;
-            display: block;
-        }
-
-        .header {
-            width: 100%;
-            background-color: #e8f5e9;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            position: fixed; /* Header is fixed */
-            top: 0; /* Stays at the top */
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .header_navLinks {
-            margin-right: 0.5%;
-            display: flex;
-            align-items: center;
-            color: black;
-        }
-
-        .header_navLinks a {
-            font-size: 17px;
-            font-weight: 500;
-            color: #1B5E20;
-            padding: 14px 8px;
-            white-space: nowrap;
-        }
-
-        .header_navLinks a:hover {
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 20px;
-            text-shadow: 1px 2px 4px grey;
-        }
-
-        .header_side_bars {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            padding: 10px 15px;
-            cursor: pointer;
-        }
-
-        .header_bars i {
-            font-size: 24px;
-            color: #141010;
-        }
-
-        .header_menu {
-            position: fixed;
-            width: 250px;
-            height: 100vh;
-            top: 0;
-            right: -250px;
-            transition: right 0.5s ease;
-            background-color: #CDEAC0;
-            z-index: 1001;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-        }
-
-        .submenu {
-            width: 100%;
-            padding: 15px 20px;
-            border-bottom: 1px solid #5C4033;
-            cursor: pointer;
-            text-align: right;
-        }
-        .submenu:last-child {
-            border-bottom: none;
-        }
-
-        .submenu a {
-            color: black;
-            display: block;
-            font-size: 1.1em;
-        }
-
-        .submenu:hover {
-            background-color: #5C4033;
-        }
-
-        .submenu:hover a {
-            color: white;
-            text-shadow: 1px 2px 4px grey;
-        }
-
-        .cross {
-            font-size: 35px;
-            color: white;
-            width: fit-content;
-            font-weight: bold;
-            padding: 4px 10px;
-            cursor: pointer;
-            background-color: red;
-            margin-top: 12px;
-            margin-right: 15px;
-            border-radius: 2px;
-            align-self: flex-end;
-        }
-
-        /* Responsive Header Navigation */
-        @media (min-width: 1010px) {
-            .header_side_bars {
-                display: none;
-            }
-            .header_navLinks {
-                display: flex;
-            }
-        }
-
-        @media (max-width: 1009px) {
-            .header_navLinks {
-                display: none;
-            }
-            .header_side_bars {
-                display: flex;
-            }
         }
 
         .section-pair {
@@ -334,17 +418,6 @@
             transition: transform 0.2s ease;
         }
 
-
-        a {
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
         .back-button-container {
             text-align: center;
             margin-top: 40px;
@@ -366,209 +439,106 @@
             background-color: #3b7c62;
             transform: translateY(-2px);
         }
+        
+        /* Media Queries for Responsiveness */
+        @media (min-width: 1010px) {
+            .header_side_bars {
+                display: none;
+            }
+        }
 
-        /* --- Media Queries for Responsiveness --- */
+        @media (max-width: 1010px) {
+            .header_navLinks, .Cart_Login {
+                display: none;
+            }
+            .header_side_bars {
+                display: flex;
+            }
+            .header_menu {
+                top: 0px;
+                right: -250px;
+            }
+        }
+
         @media screen and (max-width: 1024px) {
-            h1 {
-                font-size: 2.4em;
-            }
-            h2 {
-                font-size: 1.8em;
-            }
-            h4 {
-                font-size: 1.2em;
-            }
-            .button-container,
-            .section-pair {
-                gap: 20px;
-            }
-            .plant-option {
-                min-width: 280px;
-            }
-            .plant-option img {
-                height: 250px;
-            }
-            .plant-type {
-                flex: 1 1 48%;
-                min-width: 300px;
-                max-width: unset;
-            }
-            .plant-card img {
-                height: 220px;
-            }
+            h1 { font-size: 2.4em; }
+            h2 { font-size: 1.8em; }
+            h4 { font-size: 1.2em; }
+            .button-container, .section-pair { gap: 20px; }
+            .plant-option { min-width: 280px; }
+            .plant-option img { height: 250px; }
+            .plant-type { flex: 1 1 48%; min-width: 300px; max-width: unset; }
+            .plant-card img { height: 220px; }
         }
 
         @media screen and (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            h1 {
-                font-size: 2em;
-            }
-            h2 {
-                font-size: 1.6em;
-            }
-            h4 {
-                font-size: 1.1em;
-                margin-top: 15px;
-            }
-            p, ul, li {
-                font-size: 0.95em;
-            }
-            .button-container,
-            .section-pair {
-                flex-direction: column;
-                gap: 25px;
-                margin-top: 30px;
-            }
-            .plant-option,
-            .plant-type,
-            .box,
-            .plant-card {
-                width: 100%;
-                min-width: unset;
-            }
-            .plant-option img {
-                height: 200px;
-            }
-            .box {
-                padding: 20px;
-            }
-            .plant-card {
-                padding: 20px;
-            }
-            .plant-card img {
-                height: 180px;
-            }
+            body { padding: 10px; }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.6em; }
+            h4 { font-size: 1.1em; margin-top: 15px; }
+            p, ul, li { font-size: 0.95em; }
+            .header_navLinks, .Cart_Login { display: none; }
+            .header_side_bars { display: flex; }
+            .header { padding: 0 20px; }
+            .button-container, .section-pair { flex-direction: column; gap: 25px; margin-top: 30px; }
+            .plant-option, .plant-type, .box, .plant-card { width: 100%; min-width: unset; }
+            .plant-option img { height: 200px; }
+            .box { padding: 20px; }
+            .plant-card { padding: 20px; }
+            .plant-card img { height: 180px; }
+            .footer_top { flex-direction: column; align-items: center; text-align: center; }
+            .social_media { justify-content: center; }
         }
 
         @media screen and (max-width: 480px) {
-            h1 {
-                font-size: 1.8em;
-                margin-bottom: 25px;
-            }
-            h2 {
-                font-size: 1.4em;
-            }
-            h4 {
-                font-size: 1.1em;
-            }
-            p, ul, li {
-                font-size: 0.9em;
-            }
-            .plant-option img {
-                height: 180px;
-            }
-            .plant-card img {
-                height: 150px;
-            }
-            .plant-box {
-                padding: 12px 15px;
-            }
-            .back-button {
-                padding: 10px 20px;
-                font-size: 1em;
-            }
-            .header_logo img {
-                height: 70px; /* Smaller logo on very small screens */
-            }
+            h1 { font-size: 1.8em; margin-bottom: 25px; }
+            h2 { font-size: 1.4em; }
+            h4 { font-size: 1.1em; }
+            p, ul, li { font-size: 0.9em; }
+            .plant-option img { height: 180px; }
+            .plant-card img { height: 150px; }
+            .plant-box { padding: 12px 15px; }
+            .back-button { padding: 10px 20px; font-size: 1em; }
+            .header_logo img { height: 50px; }
         }
-
-        *{
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-}
-.footer_top{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #8C7153;
-    color: white;
-    padding: 1rem;
-}
-.footer h2, .footer h3{
-    padding: 0.5rem;
-    color: #FFF4B0;
-}
-.footer_contact, .footer_about{
-    line-height: 24px;
-}
-.social_media{
-    padding: 5px;
-}
-.social_media i{
-    padding-right: 8px;
-}
-.footer_bottom{
-    padding: 20px;
-    color: white;
-    background-color: #8C7153;
-}
-.footer_bottom hr {
-  border: none;
-  height: 2px;
-  background-color: #ffffff;
-  margin: 10px 0;
-  width: 100%;
-}
-.copy_right{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.h1{
-    width:200px;
-    display: flex;
-    justify-content: center;
-}
-@media (max-width: 320px){
-    .footer_links{
-        margin: 1rem;
-    }
-    .footer_links h1{
-        padding-left: 2rem;
-    }
-    }
     </style>
 </head>
 <body>
     <div class="header">
-            <div class="header_logo">
-                <img src="./logo.jpg" alt="logo">
+        <div class="header_logo">
+            <img src="./EcoVANA .jpg" alt="logo">
+        </div>
+        <div class="header_navLinks">
+            <a href="#">Home</a>
+            <a href="#">Plants</a>
+            <a href="#">PlantCare</a>
+            <a href="#">Essentials</a>
+            <a href="#">Nearby Nurseries</a>
+            <a href="#">AI chatbot</a>
+        </div>
+        <div class="Cart_Login">
+            <a href="#"><i class="fa-solid fa-cart-shopping" style="color: #242020; font-size: 20px;"></i></a>
+            <a href="#" class="Login_option"><i class="fa-solid fa-circle-user" style="color: #252628; font-size: 20px;"></i>
+                <div class="Login_SignUp">Login</div>
+            </a>
+        </div>
+        <div class="header_side_bars">
+            <div class="header_bars" onclick="Open()">
+                <i class="fa-solid fa-bars" style="color: #141010;"></i>
             </div>
-            <div class="header_navLinks">
-                <a href="./homepage.html">Home</a>
-                <a href="./PlantsModified.html">Plants</a>
-                <a href="./rough.html">PlantCare</a>
-                <a href="./essentials.html">Essentials</a>
-                <a href="./FinalNewNersery.html">Nearby Nurseries</a>
-                <a href="./demo.html">AI chatbot</a>
-            </div>
-            <div class="Cart_Login">
-                <a href="./cart.html"><i class="fa-solid fa-cart-shopping" style="color: #242020; font-size: 20px;"></i></a>
-                <a href="./mainlogin.html" class="Login_option"><i class="fa-solid fa-circle-user" style="color: #252628; font-size: 20px;"></i>
-                    <div class="Login_SignUp">Logout</div>
-                </a>
-            </div>
-            <div class="header_side_bars">
-                <div class="header_bars" onclick="Open()">
-                    <i class="fa-solid fa-bars" style="color: #141010;"></i>
-                </div>
-                <div class="header_menu">
-                    <div class="cross" onclick="Close()">&times;</div>
-                    <div class="submenu"><a href="./homepage.html"><i class="fa-solid fa-house" style="color: #242629;"></i>&nbsp;Home</a></div>
-                    <div class="submenu"><a href="./PlantsModified.html"><i class="fa-solid fa-leaf" style="color: #272a2f;"></i>&nbsp;Plants</a></div>
-                    <div class="submenu"><a href="./rough.html"><i class="fa-solid fa-seedling" style="color: #2f343d;"></i>&nbsp;PlantCare</a></div>
-                    <div class="submenu"><a href="./essentials.html"><i class="fa-solid fa-mitten" style="color: #343941;"></i>&nbsp;Essentials</a></div>
-                    <div class="submenu"><a href="./FinalNewNersery.html"><i class="fa-solid fa-location-dot" style="color: #303640;"></i>&nbsp;Nearby Nurseries</a></div>
-                    <div class="submenu"><a href="./demo.html"><i class="fa-solid fa-robot" style="color: #2e3238;"></i>&nbsp;AI chatbot</a></div>
-                    <div class="submenu"><a href="./cart.html"><i class="fa-solid fa-cart-shopping" style="color: #2a2d32;"></i>&nbsp;Cart</a></div>
-                    <div class="submenu"><a href="./mainlogin.html"><i class="fa-solid fa-circle-user" style="color: #343941;"></i>&nbsp;Logout</a></div>
-                </div>
+            <div class="header_menu" id="sideMenu">
+                <div class="cross" onclick="Close()">×</div>
+                <div class="submenu"><a href="#"><i class="fa-solid fa-house" style="color: #242629;"></i> Home</a></div>
+                <div class="submenu"><a href="#"><i class="fa-solid fa-leaf" style="color: #272a2f;"></i> Plants</a></div>
+                <div class="submenu"><a href="#"><i class="fa-solid fa-seedling" style="color: #2f343d;"></i> PlantCare</a></div>
+                <div class="submenu"><a href="#"><i class="fa-solid fa-mitten" style="color: #343941;"></i> Essentials</a></div>
+                <div class="submenu"><a href="#"><i class="fa-solid fa-location-dot" style="color: #303640;"></i> Nearby Nurseries</a></div>
+                <div class="submenu"><a href="#"><i class="fa-solid fa-robot" style="color: #2e3238;"></i> AI chatbot</a></div>
+                <div class="submenu"><a href="#"><i class="fa-solid fa-cart-shopping" style="color: #2a2d32;"></i> Cart</a></div>
+                <div class="submenu"><a href="#"><i class="fa-solid fa-circle-user" style="color: #343941;"></i> Login/Sign Up</a></div>
             </div>
         </div>
+    </div>
     <main>
         <h1>Select a Plant Type</h1>
         <div id="start-box" class="button-container">
@@ -711,7 +681,6 @@
         </div>
 
         <div id="water-section" class="content-section">
-
             <h1>Water Plants</h1>
             <div class="section-pair">
                 <div class="plant-type">
@@ -831,72 +800,67 @@
         </div>
     </main>
 
+    <footer class="footer">
+        <div class="footer_top">
+            <div class="footer_about">
+                <h2>EcoVANA</h2>
+                <p>EcoVANA empowers plant lovers to transform <br>their homes into green spaces with ease and joy. <br>Join the eco-movement today!</p>
+            </div>
+            <div class="footer_contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> support@ecovana.com</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-map-marker-alt"></i> Hyderabad, India</p>
+            </div>
+            <div class="follow_us">
+                <h3>Follow Us</h3>
+                <div class="social_media">
+                    <i class="fa-lg fa-brands fa-instagram"></i>
+                    <i class="fa-lg fa-brands fa-twitter"></i>
+                    <i class="fa-lg fa-brands fa-youtube"></i>
+                    <i class="fa-lg fa-brands fa-facebook"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <hr>
+            <br>
+            <div class="copy_right">
+                <p>© 2025 EcoVANA. All rights reserved.<br>Made with❤</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Using an ID for the menu makes it slightly cleaner to target
         const sideMenu = document.getElementById("sideMenu");
 
-        function showSection(id, isBackButton = false) {
-            // Hide all sections
+        function showSection(id) {
             document.getElementById('start-box').style.display = 'none';
             document.getElementById('soil-section').style.display = 'none';
             document.getElementById('water-section').style.display = 'none';
 
-            // Show the requested section with the correct display property
             if (id === 'start-box') {
-                document.getElementById(id).style.display = 'flex'; // Set to flex for side-by-side
+                document.getElementById(id).style.display = 'flex';
             } else {
                 document.getElementById(id).style.display = 'block';
             }
-
-            // Always scroll to the top of the page when a new section is shown
-            // This provides a consistent user experience for section switching
             window.scrollTo(0, 0);
         }
 
-        // Initially show the start-box when the page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            showSection('start-box');
-        });
-
         function Open() {
-            sideMenu.style.right = "0px";
+            document.getElementsByClassName("header_menu")[0].style.right = "0px";
+            document.getElementsByClassName("header_menu")[0].style.top = "0px";
+            document.querySelector('.header_bars').setAttribute('aria-expanded', 'true');
         }
 
         function Close() {
-            sideMenu.style.right = "-250px"; // Match the width of the menu
+            document.getElementsByClassName("header_menu")[0].style.right = "-250px";
+            document.querySelector('.header_bars').setAttribute('aria-expanded', 'false');
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('start-box');
+        });
     </script>
-
-    <footer class="footer">
-           <div class="footer_top">
-                <div class="footer_about">
-                    <h2>EcoVANA</h2>
-                    <p>EcoVANA empowers plant lovers to transform <br>their homes into green spaces with ease and joy. <br>Join the eco-movement today!</p>
-                </div>
-
-                <div class="footer_contact">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-envelope"></i> support@ecovana.com</p>
-                    <p><i class="fas fa-phone"></i> ‪+91 98765 43210‬</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Hyderabad, India</p>
-                </div> 
-                <div class="follow_us">
-                    <h3>Follow Us</h3>
-                    <div class="social_media">
-                        <i class="fa-lg fa-brands fa-instagram"></i>
-                        <i class="fa-lg fa-brands fa-twitter"></i>
-                        <i class="fa-lg fa-brands fa-youtube"></i>
-                        <i class="fa-lg fa-brands fa-facebook"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="footer_bottom">
-                <hr>
-                <br>
-                <div class="copy_right">
-                    <p>&copy; 2025 EcoVANA. All rights reserved.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Made with❤</p>
-                </div>
-            </div>
-        </footer>
 </body>
 </html>
